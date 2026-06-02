@@ -154,5 +154,4 @@ Aplicativo web para que los usuarios puedan crear, ver, editar y eliminar reseñ
 
 ## Notas Importantes
 - Las contraseñas se almacenan hasheadas con bcryptjs
-- No se suben las carpetas `node_modules` ni `angular` para reducir tamaño
 - La aplicación debe estar logueada para crear/editar/eliminar reseñas
