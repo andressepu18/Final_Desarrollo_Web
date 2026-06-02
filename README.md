@@ -17,7 +17,7 @@ Características
   - `DELETE /api/resenia/:reseniaId` (eliminar)
 
 Estructura principal
-- `carrosv4/` — backend Node
+- `Backend/` — backend Node
   - `index.js` — conexión a MongoDB y arranque
   - `application.js` — configuración Express
   - `routes/` — rutas (`resenas`, `users`)
@@ -25,7 +25,7 @@ Estructura principal
   - `models/` — esquemas Mongoose
   - `helpers/auth.js` — creación y validación de JWT
 
-- `FrontendCarrosV3/` — frontend Angular
+- `Frontend/` — frontend Angular
   - `src/app/components/login` — componente de login
   - `src/app/components/home` — UI principal (lista y formulario)
   - `src/app/services/auth.ts` — login + guardar token en `sessionStorage`
