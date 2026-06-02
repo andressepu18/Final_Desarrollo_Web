@@ -34,7 +34,7 @@ Estructura principal
 Requisitos
 - Node.js
 - npm
-- MongoDB corriendo en `mongodb://localhost:27017/ejemploweb` (o cambiar en `carrosv4/index.js`).
+- MongoDB corriendo en `mongodb://localhost:27017/Was` (o cambiar en `Backend/index.js`).
 
 Instalación y ejecución (local)
 1. Backend:
