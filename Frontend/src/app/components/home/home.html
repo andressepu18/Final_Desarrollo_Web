@@ -1,0 +1,150 @@
+<div class="min-vh-100 bg-light">
+
+  <nav class="navbar navbar-dark bg-primary">
+    <div class="container">
+      <span class="navbar-brand mb-0 h1">
+        Reseñas de Restaurantes
+      </span>
+
+      <div>
+        <button 
+          class="btn btn-light me-2"
+          (click)="abrirFormulario()">
+          + Nueva Reseña
+        </button>
+        <button 
+          class="btn btn-outline-light"
+          (click)="cerrarSesion()">
+          Cerrar sesión
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Formulario de Reseña -->
+  @if(mostrarFormulario()){
+    <div class="card mt-4 mx-auto" style="max-width: 600px;">
+      <div class="card-header bg-info text-white">
+        <h5>{{ editandoId() ? 'Editar Reseña' : 'Nueva Reseña' }}</h5>
+      </div>
+      <div class="card-body">
+        <div class="mb-3">
+          <label for="nombreRestaurante" class="form-label">Nombre del Restaurante *</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="nombreRestaurante"
+            [ngModel]="reseniaFormulario().nombreRestaurante"
+            (ngModelChange)="actualizarCampoFormulario('nombreRestaurante', $event)"
+            placeholder="Ej: La Pizzería del Barrio">
+        </div>
+
+        <div class="mb-3">
+          <label for="calificacion" class="form-label">Calificación (1-5) *</label>
+          <select 
+            class="form-select" 
+            id="calificacion"
+            [ngModel]="reseniaFormulario().calificacion"
+            (ngModelChange)="actualizarCampoFormulario('calificacion', $event)">
+            <option [ngValue]="null">Selecciona una calificación</option>
+            <option [ngValue]="1">⭐ 1 - Pésimo</option>
+            <option [ngValue]="2">⭐⭐ 2 - Malo</option>
+            <option [ngValue]="3">⭐⭐⭐ 3 - Regular</option>
+            <option [ngValue]="4">⭐⭐⭐⭐ 4 - Bueno</option>
+            <option [ngValue]="5">⭐⭐⭐⭐⭐ 5 - Excelente</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="fechaVisita" class="form-label">Fecha de Visita *</label>
+          <input 
+            type="date" 
+            class="form-control" 
+            id="fechaVisita"
+            [ngModel]="reseniaFormulario().fechaVisita"
+            (ngModelChange)="actualizarCampoFormulario('fechaVisita', $event)">
+        </div>
+
+        <div class="mb-3">
+          <label for="observaciones" class="form-label">Observaciones</label>
+          <textarea 
+            class="form-control" 
+            id="observaciones"
+            [ngModel]="reseniaFormulario().observaciones"
+            (ngModelChange)="actualizarCampoFormulario('observaciones', $event)"
+            rows="4"
+            placeholder="Comparte tu experiencia..."></textarea>
+        </div>
+
+        <div class="d-flex gap-2">
+          <button class="btn btn-success" (click)="guardarResenia()">
+            {{ editandoId() ? 'Actualizar' : 'Crear' }}
+          </button>
+          <button class="btn btn-secondary" (click)="cerrarFormulario()">
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Listado de Reseñas -->
+  <div class="container mt-5">
+    @if(resenas().length > 0){
+      <div class="row">
+        @for (resenia of resenas(); track resenia._id){
+          <div class="col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">{{ resenia.nombreRestaurante }}</h5>
+                <p class="card-text">
+                  <strong>Calificación:</strong> 
+                  @for (star of [1, 2, 3, 4, 5]; track star){
+                    @if(star <= (resenia.calificacion ?? 0)){
+                      <span style="color: gold;">★</span>
+                    }
+                    @else{
+                      <span style="color: #ccc;">☆</span>
+                    }
+                  }
+                </p>
+                <p class="card-text">
+                  <strong>Fecha de Visita:</strong> 
+                  {{ resenia.fechaVisita | date: 'dd/MM/yyyy' }}
+                </p>
+                <p class="card-text">
+                  <strong>Observaciones:</strong><br>
+                  {{ resenia.observaciones || 'Sin observaciones' }}
+                </p>
+              </div>
+              <div class="card-footer bg-transparent">
+                @if(esPropio(resenia)){
+                  <button 
+                    class="btn btn-sm btn-warning"
+                    (click)="editarResenia(resenia)">
+                    ✏️ Editar
+                  </button>
+                  <button 
+                    class="btn btn-sm btn-danger ms-2"
+                    (click)="eliminarResenia(resenia._id)">
+                    🗑️ Eliminar
+                  </button>
+                }
+                @else{
+                  <small class="text-muted">Reseña de otro usuario</small>
+                }
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    }
+    @else{
+      <div class="alert alert-info text-center">
+        <h5>No hay reseñas aún</h5>
+        <p>Sé el primero en compartir tu experiencia en un restaurante</p>
+      </div>
+    }
+  </div>
+
+</div>
