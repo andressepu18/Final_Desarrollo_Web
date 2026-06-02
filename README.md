@@ -4,7 +4,7 @@ Proyecto fullstack (Node + Angular) para crear, leer, actualizar y eliminar rese
 
 Resumen
 - Backend: Node.js + Express + Mongoose (MongoDB).
-- Frontend: Angular (carpeta `FrontendCarrosV3`).
+- Frontend: Angular (carpeta `Frontend`).
 - Autenticación: token JWT almacenado en `sessionStorage`.
 
 Características
