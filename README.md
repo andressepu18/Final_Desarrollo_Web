@@ -34,19 +34,19 @@ Estructura principal
 Requisitos
 - Node.js
 - npm
-- MongoDB corriendo en `mongodb://localhost:27017/Was` (o cambiar en `Backend/index.js`).
+- MongoDB corriendo en `mongodb://localhost:27017/was` (o cambiar en `Backend/index.js`).
 
 Instalación y ejecución (local)
 1. Backend:
 ```bash
-cd carrosv4
+cd Backend
 npm install
 node index.js
 ```
 
 2. Frontend:
 ```bash
-cd FrontendCarrosV3
+cd Frontend
 npm install
 npm start
 # abre http://localhost:4200 (por defecto de Angular)
@@ -55,22 +55,13 @@ npm start
 Notas sobre autenticación
 - El login devuelve un token JWT que se guarda en `sessionStorage` (método `guardarToken` en `src/app/services/auth.ts`).
 - El backend espera el header `Authorization: Bearer <token>` para rutas protegidas. El helper `auth.js` valida y extrae `req.userId`.
-- El token tiene expiración (configurable en `carrosv4/helpers/auth.js`).
-
-Preparar para GitHub
-- El repositorio ya incluye `.gitignore` en la raíz para ignorar `node_modules` y archivos sensibles.
-- Antes de subir: eliminar las carpetas `node_modules` de `carrosv4` y `FrontendCarrosV3` (no deben versionarse).
-- Mantén `package-lock.json` o `yarn.lock` para reproducibilidad.
+- El token tiene expiración (configurable en `Backend/helpers/auth.js`).
 
 Puntos de interés para la entrega
 - Cumple los requisitos:
   - Frontend en Angular, login y almacenamiento de token en `sessionStorage`, CRUD de reseñas.
   - Backend en Node, APIs para login y CRUD.
   - Base de datos en MongoDB (Mongoose).
-
-Contacto
-- Si quieres, puedo generar un `README.md` en inglés, o añadir instrucciones de despliegue (Heroku, Railway, o GitHub Actions).
-# Sistema de Reseñas de Restaurantes
 
 ## Descripción
 Aplicativo web para que los usuarios puedan crear, ver, editar y eliminar reseñas de restaurantes. Los usuarios pueden ver todas las reseñas pero solo pueden modificar o eliminar sus propias reseñas.
@@ -91,7 +82,7 @@ Aplicativo web para que los usuarios puedan crear, ver, editar y eliminar reseñ
 ## Instalación
 
 ### Backend (carrosv4)
-1. Navega a la carpeta `carrosv4`
+1. Navega a la carpeta `Backend`
 2. Instala las dependencias:
    ```bash
    npm install
@@ -103,8 +94,8 @@ Aplicativo web para que los usuarios puedan crear, ver, editar y eliminar reseñ
    ```
    El servidor se iniciará en `http://localhost:1702`
 
-### Frontend (FrontendCarrosV3)
-1. Navega a la carpeta `FrontendCarrosV3`
+### Frontend (Frontend)
+1. Navega a la carpeta `Frontend`
 2. Instala las dependencias:
    ```bash
    npm install
@@ -118,9 +109,8 @@ Aplicativo web para que los usuarios puedan crear, ver, editar y eliminar reseñ
 ## Uso
 
 1. Abre el navegador y ve a `http://localhost:4200`
-2. Si no tienes cuenta, regístrate con tu email y contraseña
-3. Inicia sesión
-4. Una vez logueado, puedes:
+2. Inicia sesión
+3. Una vez logueado, puedes:
    - Ver todas las reseñas de todos los usuarios
    - Crear nuevas reseñas de restaurantes
    - Editar tus propias reseñas
